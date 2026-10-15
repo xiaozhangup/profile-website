@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Daniel Zhang / xiaozhangup 的个人主页：Linux 桌面、Minecraft 与日常自动化开源项目。" />
+  <title>Daniel Zhang / 个人作品集</title>
+  <style>
+:root{
+  --paper:#fff;--ink:#111820;--ink-soft:#333e4a;--blue:#194fe6;--blue-dark:#153db4;--green:#00984d;--green-bright:#10c67a;--magenta:#f21464;--ice:#e5efff;--sky:#f4f8ff;--line:#d5e2f4;
+  --sans:Arial,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;--mono:"SFMono-Regular","Cascadia Code",Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:0}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+button,a,input,textarea{font:inherit}
+a{color:inherit;text-decoration:none}button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:4px}
+[hidden]{display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.container{width:min(100% - 96px,1420px);margin-inline:auto}.page{overflow:clip}.skip-link{position:fixed;z-index:80;top:-120px;left:20px;background:var(--blue);color:#fff;padding:12px}.skip-link:focus{top:12px}
+.site-header{position:relative;z-index:20;border-bottom:1px solid #e9eef7;background:rgba(255,255,255,.97)}
+.header-inner{height:88px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;gap:14px;flex-shrink:0}.brand-symbol{height:43px;min-width:56px;display:flex;align-items:center;justify-content:center;color:var(--blue);font:900 28px/1 var(--mono);letter-spacing:-7px;padding-right:7px}.brand-symbol span{color:var(--green)}
+.brand-text{display:flex;flex-direction:column;gap:3px}.brand-text strong{font:900 17px/1.15 var(--sans);letter-spacing:-.7px}.brand-text small{font:700 9px/1.3 var(--mono);letter-spacing:1.5px;color:#64738a}.brand-index{color:var(--green)}
+.main-nav{display:flex;align-items:center;gap:30px;margin-inline:auto}.main-nav a{font:700 11px/1 var(--mono);color:#8493a7;transition:color .2s;white-space:nowrap}.main-nav a span{color:var(--ink);margin-left:5px}.main-nav a:hover,.main-nav a.active,.main-nav a:hover span,.main-nav a.active span{color:var(--blue)}
+.edit-button{display:flex;align-items:center;gap:10px;color:var(--ink);background:#fff;border:1px solid var(--ink);padding:10px 16px;font:800 11px/1 var(--mono);white-space:nowrap;transition:background .2s,color .2s,transform .2s}.edit-button:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}.edit-square{font:700 20px/.65 var(--mono);color:var(--green)}
+.mobile-menu-button{display:none}
+/* A diagonal cloud of selected code, deliberately kept on white paper. */
+.hero{padding-top:27px}.top-rule,.hero-baseline{display:flex;align-items:center;justify-content:space-between;font:700 10px/1.5 var(--mono);color:#65738a;letter-spacing:.8px}.top-rule{padding-bottom:12px;border-bottom:1px solid #e5ebf2}.top-rule .green{color:var(--green);font-size:12px}.rule-trail{color:var(--green)}
+.hero-layout{min-height:735px;display:grid;grid-template-columns:52% 48%;position:relative}.hero-visual{position:relative;min-width:0}.selected-code{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.strip{position:absolute;display:inline-flex;align-items:center;white-space:nowrap;padding:5px 11px;font:700 12px/1.25 var(--mono);letter-spacing:-.38px;transform:translateZ(0)}.strip.cobalt{color:#fff;background:var(--blue)}.strip.ice{color:var(--ink);background:var(--ice)}.strip.emerald{color:var(--green);background:none}.strip.punctuation{color:var(--green);font-size:22px;gap:12px;background:none}.strip.punctuation span{width:23px;height:7px;background:var(--green);display:inline-block}.strip.blue-dots{color:var(--blue);letter-spacing:6px}.strip.green-bars{color:var(--green);font-size:16px}.strip.subtle{color:#bcd0ea;letter-spacing:8px}
+.s01{top:49px;left:-48px}.s02{top:91px;left:-3px}.s03{top:130px;left:10px}.s04{top:170px;left:51px}.s05{top:215px;left:13px}.s06{top:251px;left:421px}.s07{top:286px;left:9px}.s08{top:330px;left:73px}.s09{top:370px;left:18px}.s10{top:415px;left:88px}.s11{top:445px;left:407px}.s12{top:485px;left:22px}.s13{top:525px;left:97px}.s14{top:554px;left:346px}.s15{top:598px;left:208px}.s16{top:636px;left:380px}
+.avatar-block{position:absolute;left:38px;bottom:34px;width:197px;z-index:3}.avatar-frame{height:197px;position:relative;padding:11px;background:#fff}.avatar-inner{height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;background:#f5f9ff;position:relative;overflow:hidden}.avatar-glyph{font:900 41px/1 var(--mono);letter-spacing:-4px;color:var(--blue);opacity:.75}.avatar-placeholder{text-align:center;font:700 10px/1.5 var(--mono);color:#8ca3c1;letter-spacing:1.5px}.avatar-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.corner{position:absolute;height:23px;width:23px;border-color:var(--ink);z-index:1}.corner.tl{top:0;left:0;border-top:4px solid;border-left:4px solid}.corner.tr{top:0;right:0;border-top:4px solid;border-right:4px solid}.corner.bl{bottom:0;left:0;border-bottom:4px solid;border-left:4px solid}.corner.br{bottom:0;right:0;border-bottom:4px solid;border-right:4px solid}.avatar-change{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);white-space:nowrap;color:#fff;background:var(--blue);font:700 9px/1 var(--mono);letter-spacing:.5px;padding:8px 9px;cursor:pointer;z-index:2;opacity:0;transition:opacity .2s}.avatar-frame:hover .avatar-change,.avatar-frame:focus-within .avatar-change{opacity:1}@media(hover:none){.avatar-change{opacity:1}}.avatar-caption{display:flex;justify-content:space-between;margin-top:10px;gap:8px;font:700 9px/1.2 var(--mono);letter-spacing:.2px}.avatar-caption span:first-child{color:var(--blue)}.avatar-caption b{color:var(--green)}.visual-footnote{position:absolute;left:286px;bottom:55px;display:flex;align-items:center;gap:12px;color:var(--green);font:700 9px/1.6 var(--mono);letter-spacing:.8px}.visual-asterisk{font-size:33px}
+.hero-copy{position:relative;display:flex;flex-direction:column;align-items:flex-end;text-align:right;justify-content:flex-start;padding:66px 0 45px 12px;z-index:4}.small-label{font:700 12px/1.4 var(--mono);color:var(--blue);margin:0 0 25px;letter-spacing:.7px}.text-green{color:var(--green)}
+.hero-title{display:flex;align-items:flex-end;flex-direction:column;max-width:100%;font:900 clamp(82px,10vw,166px)/.89 var(--sans);letter-spacing:-.091em;margin:0;color:var(--ink);white-space:nowrap}.hero-title>span{display:block;padding-right:.07em}.hero-title.long-name{font-size:clamp(43px,6.1vw,94px)}.title-dot{color:var(--green)}
+.year-line{display:flex;align-items:flex-start;justify-content:flex-end;margin-top:10px;gap:15px;font:900 clamp(94px,11vw,174px)/.98 var(--sans);letter-spacing:-.08em;color:var(--blue)}.year-line b{font:900 46px/1 var(--mono);color:var(--green);letter-spacing:0;margin-top:8px}
+.hero-occupation{font:900 clamp(15px,1.85vw,27px)/1.2 var(--mono);letter-spacing:-1px;color:var(--ink);margin-top:18px;white-space:nowrap}.occupation-angle{color:var(--green);margin-inline:5px}.hero-statement{font:500 17px/1.75 var(--sans);color:var(--ink-soft);max-width:435px;margin:25px 0 0}.hero-action-row{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:26px;margin-top:32px}.primary-link{display:inline-flex;align-items:center;justify-content:space-between;gap:34px;background:var(--blue);color:#fff;border:1px solid var(--blue);font:800 12px/1 var(--mono);padding:18px 20px;transition:transform .2s,background .2s}.primary-link span{font-size:18px;line-height:.7}.primary-link:hover{background:var(--blue-dark);transform:translateY(-2px)}.plain-link{color:var(--ink);font:800 11px/1 var(--mono);border-bottom:1px solid var(--ink);padding-block:6px;transition:color .2s}.plain-link:hover{color:var(--blue)}.plain-link span{margin-left:10px;color:var(--green)}.mini-coordinate{font:700 10px/1.4 var(--mono);color:#8596aa;letter-spacing:.2px;margin:29px 0 0}.mini-coordinate [data-profile="location"]{color:var(--ink)}.active-circle,.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);vertical-align:middle;margin-left:9px;box-shadow:0 0 0 4px #e7f8ed}.hero-baseline{padding:19px 0;border-top:1px solid var(--ink);color:var(--ink);margin-top:2px}.baseline-dashes{height:3px;flex:1;margin:0 40px;background:repeating-linear-gradient(90deg,#d9e5f5 0,#d9e5f5 17px,transparent 17px,transparent 27px)}.terminal-caret{color:var(--green)}
+.section-container{padding-top:93px}.section-heading{display:flex;align-items:center;gap:24px;font:700 11px/1.3 var(--mono);letter-spacing:.4px}.section-no{color:var(--blue);white-space:nowrap}.section-heading-line{height:1px;flex:1;background:#dfe7f2}.section-index{color:#8596aa;white-space:nowrap}.eyebrow{font:700 12px/1.5 var(--mono);letter-spacing:.2px;margin:0 0 22px}
+.about-grid{display:grid;grid-template-columns:1fr .82fr;gap:10%;padding-top:56px;padding-bottom:17px}.about-title-col h2,.section-title-row h2,.toolbox-grid h2{font:900 clamp(45px,5.5vw,82px)/1.03 var(--sans);letter-spacing:-.067em;margin:0}.about-title-col h2>span:not(.small-plus):not(.typing-glyph){color:var(--blue)}.small-plus{font:900 35px/1 var(--mono);color:var(--green);vertical-align:top;margin-left:13px}.about-lede{font-size:17px;line-height:2;max-width:510px;color:#4c5b6a;margin:37px 0 0}.about-info-col{padding-top:3px}.about-ascii{display:flex;gap:48px;height:132px;overflow:hidden;font:900 13px/1.5 var(--mono);letter-spacing:1px;color:var(--green)}.about-ascii span:last-child{color:var(--blue);font-size:12px;line-height:1.5}.info-prompt{font:700 13px/1.6 var(--mono);margin:0 0 15px}.profile-facts{margin:0;border-top:1px solid #d9e6f5}.profile-facts>div{display:grid;grid-template-columns:135px 1fr;gap:15px;border-bottom:1px solid #e0e8f2;padding:17px 3px}.profile-facts dt{color:var(--blue);font:700 11px/1.5 var(--mono)}.profile-facts dd{font:700 12px/1.5 var(--mono);margin:0;color:var(--ink);overflow-wrap:anywhere}.profile-facts .status-dot{width:7px;height:7px;margin:0 6px 1px 0}.last-bracket{margin-top:15px}.last-bracket>span:not(.typing-glyph){color:#9caac0}
+.projects-section{padding-top:130px}.section-title-row{display:flex;justify-content:space-between;align-items:end;gap:30px;margin:52px 0 30px}.section-title-row h2{font-size:clamp(47px,5.2vw,75px)}.section-title-row h2>span:not(.typing-glyph){color:var(--blue)}.section-title-row>p{font-size:13px;line-height:1.8;color:#67758a;margin:0 0 7px}.projects-shell{background:var(--sky);border:1px solid #bcd2ff;border-radius:20px;padding:26px}.projects-toolbar,.project-status{display:flex;justify-content:space-between;align-items:center;gap:20px;font:700 11px/1.4 var(--mono);letter-spacing:.2px}.square-blue{color:var(--blue);font-size:14px;vertical-align:-1px;margin-right:8px}.project-filters{display:flex;gap:7px}.filter{border:1px solid transparent;padding:8px 11px;background:transparent;color:#8699b6;font:700 11px/1 var(--mono);transition:background .2s,color .2s}.filter.active,.filter:hover{background:var(--blue);color:#fff}.filter span{opacity:.7}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.project-card{min-width:0;background:#fff;border:1px solid #d7e4f6;transition:transform .22s,box-shadow .22s;overflow:hidden}.project-card:hover{transform:translateY(-6px);box-shadow:8px 8px 0 #dbe8ff}.project-card[hidden]{display:none!important}.project-visual{height:230px;position:relative;overflow:hidden;border-bottom:1px solid #d7e4f6;background:#fff}.project-corner-label{position:absolute;z-index:1;top:17px;left:18px;font:700 10px/1.3 var(--mono);color:#8498b3}.visual-terminal{background:linear-gradient(150deg,#fff 0%,#fff 34%,#e8f1ff 34%,#e8f1ff 36%,#fff 36%)}.terminal-window{position:absolute;top:47px;left:17%;width:75%;border:2px solid var(--ink);background:#f9fbff;box-shadow:9px 9px 0 var(--blue)}.terminal-top{height:24px;background:var(--ink);display:flex;align-items:center;gap:5px;padding:0 8px}.terminal-top span{height:5px;width:5px;background:#fff}.terminal-top span:nth-child(2){background:var(--green)}.terminal-top small{font:700 8px var(--mono);margin-left:auto;color:#fff}.terminal-lines{padding:12px 12px 13px;font:700 11px/1.4 var(--mono)}.terminal-lines p{margin:3px 0;white-space:nowrap}.blue-type{color:var(--blue)}.green-type{color:var(--green)}.graphic-stars{position:absolute;left:14px;bottom:11px;color:var(--green);font:800 15px/1 var(--mono)}
+.visual-orbit{background:radial-gradient(circle at 51% 59%,#f3f8ff 0,#fff 58%)}.orbit-shape{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:165px;height:165px}.orbit-ring{position:absolute;inset:9px;border:12px dotted var(--green);border-radius:50%;transform:rotate(-20deg)}.ring-b{inset:33px;border:8px dashed var(--blue);transform:rotate(30deg)}.orbit-center{position:absolute;inset:65px;background:var(--blue);border-radius:50%}.orbit-satellite{position:absolute;right:9px;top:5px;width:19px;height:19px;background:var(--magenta);border-radius:50%}.orbit-small{position:absolute;bottom:3px;left:13px;color:var(--green);font:700 34px var(--mono)}.orbit-binary{position:absolute;right:14px;bottom:20px;color:var(--blue);font:700 10px/1.5 var(--mono);letter-spacing:2px;text-align:right}.orbit-caption{position:absolute;left:15px;bottom:18px;font:700 9px/1.3 var(--mono);color:var(--green);letter-spacing:.3px}
+.visual-glyph{background:#fff}.big-angle{position:absolute;left:48%;top:48%;transform:translate(-50%,-50%);color:var(--ink);font:900 99px/1 var(--mono);letter-spacing:-18px;z-index:2;text-shadow:6px 6px 0 #e3ecff}.glyph-cloud{position:absolute;left:-26px;top:57px;width:115%;color:var(--green);font:700 16px/1.7 var(--mono);letter-spacing:6px;transform:rotate(-13deg);opacity:.85}.glyph-cloud span{color:var(--blue)}.glyph-spark{position:absolute;right:19px;top:32px;color:var(--magenta);font:700 26px var(--mono)}
+.project-content{padding:24px 22px 20px}.project-kicker{font:700 10px/1.5 var(--mono);letter-spacing:.5px;color:var(--green)}.project-content h3{display:flex;justify-content:space-between;gap:8px;font:900 clamp(21px,2vw,27px)/1.25 var(--sans);letter-spacing:-.8px;margin:12px 0}.project-content h3>span:not(.typing-glyph){color:var(--blue)}.project-content>p{min-height:68px;color:#657284;font-size:13px;line-height:1.75;margin:10px 0 16px}.project-bottom{border-top:1px solid #e0e9f6;padding-top:15px;display:flex;align-items:center;justify-content:space-between;gap:8px}.project-bottom>span{font:700 9px/1.3 var(--mono);color:#93a0b3}.project-open{background:transparent;border:0;padding:5px;color:var(--blue);font:800 10px/1.3 var(--mono);white-space:nowrap}.project-open:hover{color:var(--green)}.project-status{font-size:10px;color:#7184a2}.project-status span:first-child{color:var(--blue)}
+.toolbox-section{padding-top:130px}.toolbox-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:11%;padding-top:55px;align-items:start}.toolbox-grid h2 em{font-style:normal;color:var(--blue)}.toolbox-note{max-width:310px;line-height:1.85;color:#6a788b;font-size:14px;margin-top:24px}.stack-panel{padding-top:7px}.stack-line{padding:19px 0 22px;border-bottom:1px solid #dae5f2;display:grid;grid-template-columns:155px 1fr;gap:20px;align-items:center}.stack-line:first-child{border-top:1px solid #dae5f2}.stack-line>span{font:700 11px/1.4 var(--mono);color:var(--blue)}.stack-line>div{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:10px 11px;color:var(--ink);font:700 11px/1 var(--mono);border:1px solid #d6e3f5;background:#f9fbff}.green-chip{border-color:#c1e9d2;color:var(--green);background:#f7fdf9}.stack-prompt{font:700 12px/1 var(--mono);color:var(--green);margin-top:21px}.blink{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.contact-section{padding-top:145px}.contact-inner{margin-top:38px;background:var(--blue);color:#fff;padding:43px 54px 39px;position:relative;overflow:hidden}.contact-inner:before{content:"++ + *** 01010 [ ] >> // ++ // ++ >> 010";position:absolute;right:-50px;bottom:34%;width:340px;transform:rotate(-16deg);font:700 18px/1.8 var(--mono);letter-spacing:5px;color:#fff;opacity:.15;pointer-events:none}.contact-top{display:flex;justify-content:space-between;gap:20px;font:700 11px/1.4 var(--mono);color:#d2ddff}.contact-top .status-dot{background:#49f4ab;box-shadow:none;margin:0 9px 1px 0}.contact-inner h2{position:relative;z-index:1;font:900 clamp(61px,9vw,141px)/.93 var(--sans);letter-spacing:-.073em;margin:59px 0 21px}.contact-inner h2>span:nth-child(1){color:#fff;-webkit-text-stroke:1px #fff}.contact-star{font:700 clamp(33px,5vw,67px)/1 var(--mono);vertical-align:top;color:#85ffc9;letter-spacing:0;margin-left:12px}.contact-inner>p{font-size:16px;line-height:1.8;color:#d9e4ff;margin:28px 0 0}.contact-links{display:flex;align-items:center;flex-wrap:wrap;gap:28px;margin-top:40px}.email-link{border-bottom:2px solid #fff;padding-bottom:9px;font:900 clamp(20px,2.7vw,36px)/1.15 var(--mono);overflow-wrap:anywhere}.email-link:hover{color:#adffda}.copy-button{color:#fff;background:transparent;border:1px solid #95b0fa;padding:12px 15px;font:700 11px/1 var(--mono);transition:background .2s}.copy-button:hover{background:#ffffff1c}.copy-button span{font-size:17px;vertical-align:-2px}.contact-end{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #86a6fc;margin-top:75px;padding-top:19px;color:#dce6ff;font:700 10px/1.5 var(--mono)}.fake-social{opacity:.65}
+.site-footer{display:flex;justify-content:space-between;align-items:center;gap:15px;min-height:100px;color:#667489;font:700 10px/1.4 var(--mono);letter-spacing:.25px}.site-footer b{color:var(--blue);font-size:18px;vertical-align:-2px;margin-right:9px;letter-spacing:-3px}.site-footer a{color:var(--blue)}.site-footer a:hover{text-decoration:underline}
+/* Dialogs and accessible demo interactions */
+.modal{border:0;padding:0;max-width:min(90vw,600px);max-height:min(91vh,900px);color:var(--ink);box-shadow:14px 14px 0 var(--blue);background:#fff}.modal::backdrop{background:rgba(14,24,39,.7)}.modal-box{padding:35px 38px 32px;max-height:90vh;overflow:auto}.modal-heading{display:flex;justify-content:space-between;align-items:center;font:700 11px/1.2 var(--mono)}.modal-heading button{border:0;background:transparent;color:var(--ink);font:900 30px/1 var(--mono);padding:2px 7px}.modal-number{color:var(--blue);font:800 12px/1.4 var(--mono);margin-top:33px}.modal-box h2{font:900 clamp(29px,5vw,49px)/1.05 var(--sans);margin:9px 0 25px;letter-spacing:-2px}.modal-box>p{font-size:15px;line-height:1.9;color:#596779}.modal-hint{background:#eaf2ff;padding:13px 15px;font-size:12px!important}.modal-tags{display:flex;gap:10px;flex-wrap:wrap}.modal-tags span{font:700 10px/1 var(--mono);padding:8px 11px;border:1px solid var(--line);color:var(--blue)}.modal-secondary{background:#fff;border:1px solid var(--ink);padding:13px 15px;color:var(--ink);font:700 11px/1 var(--mono);margin-top:23px}.modal-secondary:hover{background:#f0f5fc}.editor-description{font-size:12px!important;line-height:1.8!important}.editor-fields{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:19px}.editor-fields label{display:flex;flex-direction:column;gap:8px;color:var(--blue);font:700 10px/1.4 var(--mono)}.editor-fields label:nth-last-child(-n+2){grid-column:1/-1}.editor-fields input,.editor-fields textarea{width:100%;border:1px solid #cad8eb;background:#f9fbff;border-radius:0;padding:12px 11px;color:var(--ink);font:500 13px/1.5 var(--sans);resize:vertical}.editor-actions{display:flex;justify-content:space-between;align-items:end;gap:10px}.editor-actions button{margin-top:25px}.save-button{border:0;font:800 11px/1 var(--mono)}.toast{position:fixed;z-index:50;bottom:22px;right:22px;background:var(--ink);color:#fff;box-shadow:5px 5px 0 var(--green);padding:16px 20px;font:700 12px/1.35 var(--mono);opacity:0;pointer-events:none;transform:translateY(20px);transition:opacity .2s,transform .2s}.toast.visible{opacity:1;transform:translateY(0)}
+@media(max-width:1190px){.container{width:min(100% - 72px,1420px)}.main-nav{gap:19px}.hero-layout{grid-template-columns:51% 49%;min-height:690px}.hero-copy{padding-top:80px}.hero-title{font-size:clamp(81px,10vw,130px)}.year-line{font-size:clamp(90px,12vw,150px)}.selected-code{transform:scale(.84);transform-origin:top left}.avatar-block{bottom:15px;left:20px}.visual-footnote{left:240px}.project-content{padding:20px 16px}.project-content h3{font-size:22px}.project-bottom{flex-wrap:wrap}.project-visual{height:215px}}
+@media(max-width:900px){.container{width:min(100% - 48px,1420px)}.header-inner{height:75px}.mobile-menu-button{display:flex;align-items:center;gap:12px;margin-left:auto;background:none;border:0;color:var(--ink);font:800 12px/1 var(--mono);padding:14px 0}.menu-icon{display:flex;flex-direction:column;gap:5px}.menu-icon i{width:19px;height:2px;background:var(--blue);display:block;transition:transform .2s}.mobile-menu-button[aria-expanded="true"] .menu-icon i:first-child{transform:translateY(3.5px) rotate(45deg)}.mobile-menu-button[aria-expanded="true"] .menu-icon i:last-child{transform:translateY(-3.5px) rotate(-45deg)}.main-nav{display:none;position:absolute;top:74px;left:0;width:100%;flex-direction:column;align-items:stretch;gap:0;background:white;border-bottom:1px solid var(--line);padding:12px 24px 22px}.main-nav.open{display:flex}.main-nav a{padding:15px;border-bottom:1px solid #eaf1fa}.edit-button{padding:11px}.edit-button .edit-square{font-size:20px}.edit-button>span:last-child{display:none}.hero-layout{grid-template-columns:49% 51%;min-height:670px}.hero-copy{padding-top:68px}.hero-title{font-size:clamp(70px,11vw,108px)}.year-line{font-size:clamp(79px,12vw,115px)}.year-line b{font-size:31px}.hero-occupation{font-size:15px}.hero-statement{font-size:14px}.hero-action-row{gap:13px}.primary-link{gap:12px;padding:15px}.plain-link{font-size:10px}.selected-code{transform:scale(.7)}.avatar-block{bottom:35px;left:8px;transform:scale(.88);transform-origin:bottom left}.visual-footnote{left:187px;bottom:70px}.about-grid{gap:5%}.about-title-col h2,.section-title-row h2,.toolbox-grid h2{font-size:clamp(43px,6.5vw,70px)}.project-grid{gap:9px}.project-visual{height:182px}.terminal-window{width:83%;left:8%}.terminal-lines{font-size:9px}.project-content h3{font-size:19px}.project-content{padding:16px 13px}.project-content>p{font-size:12px}.project-open{font-size:9px}.stack-line{grid-template-columns:130px 1fr}.contact-inner h2{font-size:clamp(62px,10vw,111px)}}
+@media(max-width:650px){html{scroll-padding-top:0}.container{width:min(100% - 36px,1420px)}.header-inner{height:69px}.main-nav{top:69px}.brand-symbol{font-size:22px;height:35px;min-width:43px}.brand{gap:6px}.brand-text strong{font-size:15px}.brand-text small{font-size:8px;letter-spacing:1px}.top-rule{gap:10px;flex-wrap:wrap;font-size:9px}.top-rule>span:nth-child(2){display:none}.rule-trail{margin-left:auto}.hero{padding-top:18px}.hero-layout{display:flex;flex-direction:column;min-height:0}.hero-copy{order:0;padding:50px 0 0;align-items:flex-start;text-align:left}.small-label{margin-bottom:15px;font-size:10px}.hero-title{align-items:flex-start;font-size:clamp(78px,20vw,126px)}.hero-title.long-name{font-size:clamp(37px,10vw,66px)}.hero-title>span{padding-right:0}.year-line{align-self:flex-end;font-size:clamp(89px,24vw,145px);margin:-1px 0 0}.year-line b{font-size:36px}.hero-occupation{align-self:flex-end;font-size:clamp(13px,3.8vw,17px);margin-top:8px}.hero-statement{align-self:flex-start;text-align:left;margin:35px 0 0;font-size:15px}.hero-action-row{justify-content:flex-start;gap:18px;margin-top:24px}.plain-link{font-size:10px}.mini-coordinate{align-self:flex-start;font-size:9px;margin-top:23px}.hero-visual{order:1;height:460px;margin-top:25px;overflow:hidden}.selected-code{transform:scale(.7);transform-origin:top left;left:-12px;top:-17px}.avatar-block{transform:scale(.76);bottom:2px;left:17px}.visual-footnote{left:206px;bottom:32px;font-size:8px}.hero-baseline{margin-top:0;padding:17px 0;font-size:8px}.baseline-dashes{margin:0 13px}.terminal-caret{display:none}.section-container{padding-top:83px}.section-heading{font-size:9px;gap:12px}.section-index{font-size:8px}.eyebrow{font-size:10px;margin-bottom:14px}.about-grid{grid-template-columns:1fr;gap:31px;padding-top:36px}.about-title-col h2,.section-title-row h2,.toolbox-grid h2{font-size:clamp(47px,12vw,72px)}.about-lede{font-size:15px;margin:24px 0 0}.about-ascii{height:86px;gap:35px;font-size:10px}.about-ascii span:last-child{font-size:10px}.profile-facts>div{grid-template-columns:102px 1fr}.projects-section{padding-top:90px}.section-title-row{margin:34px 0 23px;flex-direction:column;align-items:start;gap:9px}.section-title-row h2{font-size:clamp(35px,9vw,55px)}.section-title-row>p{font-size:12px}.projects-shell{padding:13px;border-radius:12px}.projects-toolbar{align-items:flex-start;gap:12px;flex-direction:column;font-size:10px}.project-filters{width:100%}.filter{flex:1}.project-grid{grid-template-columns:1fr;gap:14px;margin:17px 0}.project-visual{height:235px}.project-content{padding:22px}.project-content h3{font-size:23px}.project-content>p{min-height:0}.project-bottom{flex-wrap:nowrap}.project-status{font-size:8px}.toolbox-section{padding-top:91px}.toolbox-grid{grid-template-columns:1fr;gap:25px;padding-top:35px}.toolbox-note{margin-top:15px}.stack-line{grid-template-columns:1fr;gap:11px;padding:16px 0}.stack-line>span{font-size:10px}.chip{font-size:10px}.contact-section{padding-top:94px}.contact-inner{padding:24px 20px 24px;margin-top:24px}.contact-top{font-size:9px}.contact-top>span:last-child{display:none}.contact-inner h2{font-size:clamp(49px,12.6vw,81px);letter-spacing:-.07em;margin:47px 0 15px}.contact-star{font-size:25px;margin-left:5px}.contact-inner>p{font-size:13px;margin-top:17px}.contact-links{margin-top:28px;gap:15px}.email-link{font-size:clamp(18px,5vw,26px)}.contact-end{font-size:9px;margin-top:53px;flex-direction:column;gap:8px}.site-footer{min-height:90px;gap:10px;flex-wrap:wrap;font-size:9px;padding-block:17px}.site-footer span:nth-child(2){order:3;width:100%}.modal{max-width:94vw;box-shadow:6px 6px 0 var(--blue)}.modal-box{padding:22px}.editor-fields{grid-template-columns:1fr}.editor-fields label{grid-column:1/-1}.editor-actions{flex-wrap:wrap}}
+@media(max-width:380px){.container{width:calc(100% - 30px)}.hero-title{font-size:21vw}.year-line{font-size:22vw}.hero-visual{height:410px}.selected-code{transform:scale(.59)}.avatar-block{transform:scale(.7)}.visual-footnote{left:178px}.hero-occupation{font-size:13px}.hero-action-row{gap:9px}.primary-link{font-size:10px;padding:13px}.contact-inner h2{font-size:12vw}.profile-facts>div{grid-template-columns:87px 1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Contained hero composition. */
+html{scroll-padding-top:0}
+.site-header{position:sticky;top:0;z-index:20}
+.header-inner{height:62px}
+.main-nav{margin-inline:0;margin-left:auto}
+.hero{padding-top:24px}
+.hero-layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;min-height:680px}
+.hero-copy{padding-top:38px}
+.hero-visual{min-height:640px}
+.selected-code{position:relative;inset:auto;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:32px 0 0;transform:none;width:100%;overflow:hidden}
+.strip{position:relative;inset:auto;max-width:100%;font-size:clamp(10px,1vw,12px);white-space:nowrap}
+.s01{margin-left:0}.s02{margin-left:7%}.s03{margin-left:14%}.s04{margin-left:21%}.s05{margin-left:10%}
+.s06{align-self:flex-end;margin-right:8%;padding-block:0}
+.s07{margin-left:4%;padding-block:0;letter-spacing:5px}
+.s08{margin-left:18%}.s09{margin-left:3%}.s10{margin-left:12%}
+.s11{margin-left:6%;padding-block:0}.s12{margin-left:0}.s13{margin-left:5%}
+.s14{margin-left:8%;font-size:10px}.s15{margin-left:2%;font-size:10px}.s16{display:none}
+.avatar-block{top:auto;left:auto;right:0;bottom:54px;width:clamp(150px,15vw,197px);transform:none}
+.avatar-frame{height:auto;aspect-ratio:1}
+.visual-footnote{left:0;bottom:8px;font-size:9px}
+@media(min-width:901px) and (max-width:1190px){
+ .hero-layout{gap:24px}.strip{font-size:10px;padding-inline:8px}.s04{margin-left:10%}.s08{margin-left:8%}.s10{margin-left:5%}
+ .avatar-block{width:155px;bottom:42px}.s12,.s13{font-size:9px}
+}
+@media(min-width:651px) and (max-width:900px){
+ .hero-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px}
+ .selected-code{gap:16px}.strip{font-size:9px;padding-inline:6px;letter-spacing:-.5px}
+ .s04,.s08,.s10{margin-left:0}.s07{letter-spacing:2px}.avatar-block{width:145px;bottom:35px}
+ .s12,.s13,.s14,.s15{max-width:48%;overflow:hidden;font-size:8px}.visual-footnote{font-size:8px}
+}
+@media(max-width:900px){.header-inner{height:58px}.main-nav{top:58px;margin:0}}
+@media(max-width:650px){
+ html{scroll-padding-top:0}.header-inner{height:56px}.main-nav{top:56px}
+ .hero{padding-top:0}.hero-layout{gap:0;min-height:0}.hero-copy{padding-top:32px}
+ .hero-visual{height:auto;min-height:580px;margin-top:30px;overflow:visible}
+ .selected-code{padding-top:12px;gap:13px;transform:none;left:auto;top:auto}
+ .strip{font-size:10px}.s04{margin-left:12%}.s08{margin-left:10%}.s10{margin-left:8%}
+ .s07{letter-spacing:3px}.avatar-block{width:150px;right:0;left:auto;bottom:44px;transform:none}
+ .s12,.s13,.s14,.s15{margin-left:0;font-size:9px}.visual-footnote{left:0;bottom:0;font-size:8px}
+}
+@media(max-width:380px){.strip{font-size:9px}.avatar-block{width:130px}.s12,.s13,.s14,.s15{font-size:8px}}
+
+/* Each chapter distributes its content across the available viewport. */
+html{scroll-behavior:auto;scroll-snap-type:y mandatory;scroll-padding:0}
+html.chapter-ready{scroll-snap-type:none}
+main>section{scroll-snap-align:start;scroll-snap-stop:always}
+html.chapter-ready main>section{
+ height:100dvh;min-height:0;padding-block:clamp(20px,3.5dvh,44px);
+ display:flex;flex-direction:column;justify-content:flex-start;
+ overflow-x:clip;overflow-y:auto;overscroll-behavior-y:contain;
+ scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+}
+.container{width:calc(100% - clamp(48px,8vw,160px));max-width:1800px}
+.chapter-stage{width:100%;flex:none}
+.chapter-content{width:100%;min-height:var(--chapter-height);display:flex;flex-direction:column;gap:clamp(20px,3dvh,36px)}
+.chapter-content>.section-heading{margin:0 auto;flex:none}
+.chapter-content .about-grid,.chapter-content .toolbox-grid{padding-block:0;flex:1;align-items:center}
+.chapter-content .hero-layout{flex:1;min-height:0;gap:5vw}
+.chapter-content .hero-copy{padding-block:0;justify-content:center}
+.chapter-content .hero-visual{min-height:540px}
+.chapter-content .selected-code{gap:clamp(8px,1.5dvh,22px);padding-top:0}
+.chapter-content .hero-title{font-size:clamp(78px,min(10vw,17dvh),190px)}
+.chapter-content .hero-title.long-name{font-size:clamp(38px,min(6vw,10dvh),100px)}
+.chapter-content .year-line{font-size:clamp(80px,min(11vw,18dvh),200px)}
+.chapter-content .hero-statement{margin-top:clamp(16px,3dvh,32px)}
+.chapter-content .hero-baseline{margin-top:0;padding-block:14px;flex:none}
+.chapter-content .about-title-col h2,.chapter-content .toolbox-grid h2{font-size:clamp(52px,min(7vw,12dvh),128px)}
+.chapter-content .about-lede{max-width:640px;font-size:clamp(15px,1.3vw,20px)}
+.chapter-content .about-info-col{display:flex;flex-direction:column;justify-content:center}
+.chapter-content .about-ascii{height:auto;min-height:90px;margin-bottom:clamp(16px,3dvh,40px)}
+.chapter-content .profile-facts>div{padding-block:clamp(16px,2.5dvh,34px)}
+.approach-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:1px solid var(--ink);padding-top:24px}
+.approach-grid>div+div{border-left:1px solid var(--line);padding-left:32px}
+.approach-grid .eyebrow{color:var(--green);font-size:11px}
+.approach-grid h3{font-size:clamp(18px,1.6vw,26px);letter-spacing:-.04em;margin:14px 0 10px}
+.approach-grid p{font-size:13px;line-height:1.8;color:#657284;margin:0}
+.chapter-content .section-title-row{margin:0;align-items:center}
+.chapter-content .section-title-row .eyebrow{margin-bottom:12px}
+.chapter-content .projects-shell{flex:1;display:flex;flex-direction:column;padding:clamp(16px,2vw,30px)}
+.chapter-content .project-grid{flex:1;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-block:18px}
+.chapter-content .project-card{display:flex;flex-direction:column}
+.chapter-content .project-visual{height:auto;min-height:180px;flex:1}
+.chapter-content .terminal-window{top:50%;transform:translateY(-45%)}
+.chapter-content .project-content{padding:clamp(16px,1.6vw,26px)}
+.chapter-content .project-content>p{min-height:46px}
+.chapter-content .stack-panel{padding:0}
+.chapter-content .stack-line{padding-block:clamp(20px,4dvh,48px)}
+.chapter-content .toolbox-note{max-width:400px;font-size:clamp(14px,1.2vw,18px)}
+.workflow{border-top:1px solid var(--ink);padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;font:700 11px/1.8 var(--mono)}
+.workflow p{margin:0;font-size:clamp(13px,1.4vw,20px)}
+.workflow b{color:var(--blue);margin-inline:14px}
+.chapter-content .contact-inner{margin-top:0;flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4dvh,54px) clamp(24px,4vw,64px)}
+.chapter-content .contact-top{margin-bottom:auto;padding-bottom:20px}
+.chapter-content .contact-inner h2{margin:0;font-size:clamp(56px,min(9vw,16dvh),164px)}
+.chapter-content .contact-links{margin-block:24px}
+.chapter-content .contact-end{margin-top:auto}
+.chapter-content .site-footer{min-height:24px;flex:none}
+@media(min-width:651px) and (max-height:740px){
+ .chapter-content{gap:18px}
+ .chapter-content .hero-visual{min-height:480px}
+ .chapter-content .hero-title{font-size:clamp(65px,14dvh,110px)}
+ .chapter-content .hero-title.long-name{font-size:clamp(34px,8dvh,60px)}
+ .chapter-content .year-line{font-size:clamp(70px,16dvh,118px)}
+ .chapter-content .projects-shell{padding:16px}
+ .chapter-content .project-grid{margin-block:12px}
+ .chapter-content .selected-code{gap:7px}
+ .chapter-content .hero-action-row{margin-top:20px}
+ .chapter-content .mini-coordinate{margin-top:18px}
+ .chapter-content .about-ascii{min-height:60px;margin-bottom:12px}
+ .chapter-content .about-lede{margin-top:20px}
+ .chapter-content .project-content h3{margin-block:8px}
+ .chapter-content .project-content>p{margin-block:8px}
+ .chapter-content .project-visual{min-height:160px}
+ .chapter-content .stack-line{padding-block:20px}
+ .approach-grid{padding-top:16px}
+}
+@media(min-width:651px) and (max-width:1000px){
+ .chapter-content .project-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .chapter-content .toolbox-grid{grid-template-columns:.75fr 1.25fr;gap:5%}
+ .stack-line{grid-template-columns:1fr;gap:12px}
+ .workflow{flex-wrap:wrap}.workflow>span:last-child{display:none}
+}
+@media(max-width:650px){
+ .container{width:calc(100% - 36px)}
+ html.chapter-ready main>section{padding-block:24px}
+ .chapter-content{gap:28px}
+ .chapter-content .hero-layout{gap:24px}
+ .chapter-content .hero-copy{padding:0}
+ .chapter-content .hero-title{font-size:clamp(78px,20vw,126px)}
+ .chapter-content .year-line{font-size:clamp(89px,24vw,145px)}
+ .chapter-content .hero-visual{min-height:470px;margin-top:0}
+ .chapter-content .selected-code{gap:8px}
+ .chapter-content .about-grid,.chapter-content .toolbox-grid{gap:28px}
+ .chapter-content .about-title-col h2,.chapter-content .toolbox-grid h2{font-size:clamp(47px,12vw,72px)}
+ .chapter-content .about-ascii{display:none}
+ .approach-grid{grid-template-columns:1fr;gap:20px}
+ .approach-grid>div+div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:20px}
+ .chapter-content .project-grid{grid-template-columns:1fr}
+ .chapter-content .project-visual{min-height:230px}
+ .chapter-content .stack-line{padding-block:18px}
+ .workflow{flex-direction:column;align-items:start;gap:12px}
+ .workflow p{display:flex;flex-wrap:wrap;gap:8px;font-size:12px}.workflow b{margin-inline:0}
+ .chapter-content .contact-inner h2{font-size:clamp(45px,12vw,78px)}
+ .chapter-content .contact-end{padding-top:16px}
+ .chapter-content .contact-inner>p{margin-top:24px}
+ .chapter-content .site-footer{padding-block:0}
+}
+
+.chapter-content h1[tabindex="-1"]:focus,.chapter-content h2[tabindex="-1"]:focus{outline:none}
+
+/* All chapter headers use one fixed typographic scale. */
+:root{--chapter-heading-size:12px;--chapter-heading-leading:1.4}
+.section-heading{
+  min-height:calc(var(--chapter-heading-size) * var(--chapter-heading-leading));
+  font-size:var(--chapter-heading-size);
+  line-height:var(--chapter-heading-leading);
+  letter-spacing:.08em;
+}
+.section-heading .section-no,.section-heading .section-index{
+  font:inherit;
+  letter-spacing:inherit;
+}
+@media(max-width:650px){
+  .section-heading,.section-heading .section-index{font-size:var(--chapter-heading-size);line-height:var(--chapter-heading-leading)}
+}
+
+/* Glyph opacity preserves layout, colored markup and complete screen-reader text. */
+.typing-word{white-space:nowrap}
+.is-typing .selected-code .strip{transform-origin:top;animation:code-row-in 240ms cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--typing-start,0ms) + var(--code-delay,0ms))}
+@keyframes code-row-in{
+  from{opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(-8px) scaleY(.8)}
+  to{opacity:1;clip-path:inset(0);transform:translateY(0) scaleY(1)}
+}
+.is-typing .typing-glyph{animation:type-glyph 0s linear both,type-cursor var(--cursor-duration,28ms) steps(1,end);animation-delay:calc(var(--typing-start,0ms) + var(--typing-delay,0ms)),calc(var(--typing-start,0ms) + var(--cursor-delay,0ms))}
+@keyframes type-glyph{
+  0%{opacity:0}
+  100%{opacity:1}
+}
+@keyframes type-cursor{
+  from{box-shadow:1px 0 currentColor}
+  to{box-shadow:none}
+}
+@media(prefers-reduced-motion:reduce){.is-typing .typing-glyph{animation:none}}
+
+/* Decorative entrances replay once whenever a chapter becomes active.
+   Individual transforms preserve the existing layout/illustration transforms. */
+:is(.is-active,.is-entering) .section-heading-line,
+:is(.is-active,.is-entering) .baseline-dashes {
+  transform-origin:left center;
+  animation:decoration-line-in 700ms cubic-bezier(.16,1,.3,1) both;
+}
+:is(.is-active,.is-entering) .corner {
+  animation:decoration-corner-in 650ms ease-out both;
+}
+:is(.is-active,.is-entering) .corner.tr,:is(.is-active,.is-entering) .corner.bl { animation-delay:90ms }
+:is(.is-active,.is-entering) .corner.br { animation-delay:180ms }
+:is(.is-active,.is-entering) .about-ascii > span,
+:is(.is-active,.is-entering) .terminal-window,
+:is(.is-active,.is-entering) .orbit-shape,
+:is(.is-active,.is-entering) .big-angle {
+  animation:decoration-in 750ms cubic-bezier(.16,1,.3,1) both;
+}
+:is(.is-active,.is-entering) .about-ascii > span:last-child,
+:is(.is-active,.is-entering) .orbit-shape { animation-delay:100ms }
+:is(.is-active,.is-entering) .big-angle { animation-delay:180ms }
+@keyframes decoration-line-in {
+  from { scale:0 1; opacity:0 }
+  to { scale:1 1; opacity:1 }
+}
+@keyframes decoration-corner-in {
+  from { scale:.65; opacity:0 }
+  to { scale:1; opacity:1 }
+}
+@keyframes decoration-in {
+  from { translate:0 8px; opacity:0 }
+  to { translate:0 0; opacity:1 }
+}
+
+/* Slow ambient motion stays on small ornaments, away from reading text. */
+.year-line b,.visual-asterisk,.contact-star,.glyph-spark {
+  display:inline-block;
+  animation:decoration-turn 48s linear infinite;
+}
+.visual-asterisk { animation-duration:60s; animation-direction:reverse }
+.contact-star { animation-duration:56s }
+.orbit-ring { animation:decoration-turn 52s linear infinite }
+.orbit-ring.ring-b { animation-duration:38s; animation-direction:reverse }
+.active-circle,.status-dot {
+  animation:decoration-breathe 4.8s ease-in-out infinite;
+}
+.punctuation > span { animation:decoration-breathe 5.6s ease-in-out infinite }
+.punctuation > span:nth-child(2) { animation-delay:400ms }
+.punctuation > span:nth-child(3) { animation-delay:800ms }
+@keyframes decoration-turn { to { rotate:360deg } }
+@keyframes decoration-breathe {
+  0%,100% { opacity:1 }
+  50% { opacity:.55 }
+}
+/* Pause rather than reset loops when navigating away or hiding the tab. */
+main > section:not(.is-active):not(.is-entering) :is(.year-line b,.visual-asterisk,.contact-star,.glyph-spark,.orbit-ring,.active-circle,.status-dot,.punctuation > span,.blink),
+html.motion-paused main > section *,
+html.motion-paused main > section *::before,
+html.motion-paused main > section *::after { animation-play-state:paused }
+@media(prefers-reduced-motion:reduce) {
+  main > section *,main > section *::before,main > section *::after { animation:none!important }
+}
+
+/* Hold the incoming content until the shared scroll arrival cue. */
+.is-awaiting-entry .chapter-content { visibility:hidden }
+
+/* Personal content keeps the original chapter composition and palette. */
+.chapter-content .year-line{font:700 clamp(12px,1.3vw,18px)/1.5 var(--mono);letter-spacing:.04em;margin-top:18px;gap:22px}
+.year-line b{font-size:28px}
+.project-content h3{overflow-wrap:anywhere;font-size:clamp(18px,1.8vw,28px)}
+.project-tags{font:11px/1.8 var(--mono);color:var(--green);margin:8px 0 18px}
+.project-bottom{gap:12px;margin-top:auto;flex-wrap:wrap}
+.source-link{font:700 12px/1.6 var(--mono);color:var(--blue)}
+.project-content{display:flex;flex-direction:column;flex:1}
+.chapter-content .stack-line{padding-block:clamp(12px,2.2dvh,25px)}
+.chapter-content .contact-inner h2{font-size:clamp(45px,min(7.5vw,13dvh),140px)}
+.lyric-demo,.bot-demo{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:48px 22px 25px;gap:18px}
+.lyric-island{background:var(--ink);color:white;border-radius:28px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;font:10px/1.6 var(--mono);box-shadow:0 12px 24px #153db415}
+.lyric-island>span{font-size:24px;color:var(--green-bright)}
+.lyric-island small{display:block;color:#c4d2e5;font-size:10px}
+.lyric-island b{color:var(--green-bright);letter-spacing:2px}
+.lyric-lines{display:flex;flex-direction:column;gap:10px;text-align:center;font-size:11px;color:#64758b}
+.lyric-lines strong{font-size:clamp(12px,1.3vw,19px);color:var(--blue)}
+.lyric-lines strong span{color:#91a6c5}
+.lyric-lines small{font:9px var(--mono);letter-spacing:.15em}
+.bot-message{background:white;border:1px solid var(--line);padding:16px;font:700 12px/1.6 var(--mono);box-shadow:4px 4px 0 var(--ice);max-width:95%}
+.bot-message span{display:block;font-size:9px;font-weight:400;color:#657284;margin-top:5px}
+.bot-path{font:11px var(--mono);color:var(--blue);text-align:center}
+.bot-result{align-self:flex-end;border-color:var(--green)}
+.bot-result b{color:var(--green)}
+.modal-box>.primary-link{margin:20px 12px 20px 0}
+@media(max-width:650px){.chapter-content .year-line{font-size:12px}.project-content h3{font-size:24px}.lyric-lines strong{font-size:16px}.chapter-content .contact-inner h2{font-size:clamp(36px,10vw,64px)}}
+.chapter-content .project-visual{min-height:260px}
+.lyric-demo,.bot-demo{padding-top:48px;padding-bottom:22px}
+.terminal-lines{overflow-wrap:anywhere}
+@media(max-width:1000px){
+ .chapter-content .project-grid{grid-template-columns:1fr}
+ .chapter-content .project-visual{min-height:260px;flex:none}
+ .project-content h3{font-size:24px}
+ .lyric-demo,.bot-demo{max-width:420px;margin-inline:auto}
+}
+
+/* Text-led projects and personal interests. */
+.beyond-code{display:flex;align-items:center;justify-content:space-between;gap:32px;border-top:1px solid var(--ink);padding-top:28px}
+.beyond-code .eyebrow{font-size:11px;margin:0 0 14px}
+.beyond-code h3{font-size:clamp(22px,2.2vw,34px);letter-spacing:-.04em;margin:0 0 12px}
+.beyond-note{font-size:14px;line-height:1.8;color:#657284;margin:0}
+.interest-links{display:flex;gap:clamp(20px,3vw,48px);flex-wrap:wrap;font:700 13px/1.8 var(--mono);color:var(--blue)}
+.interest-links a:hover,.interest-links a:focus-visible{color:var(--green);text-decoration:underline;text-underline-offset:6px}
+.projects-section .chapter-content{justify-content:center}
+.projects-section .chapter-content>.section-heading{margin-bottom:auto}
+.chapter-content .projects-shell{flex:none;margin-block:auto}
+.chapter-content .project-grid{flex:none;align-items:stretch;margin-block:26px}
+.chapter-content .project-content{padding:clamp(24px,2.5vw,44px);gap:0}
+.chapter-content .project-content h3{font-size:clamp(22px,2.1vw,34px);margin-block:26px 18px;color:var(--blue);align-items:baseline}
+.project-name{min-width:0;overflow-wrap:anywhere}
+.project-name .typing-word{white-space:normal}
+.chapter-content .project-content>p{min-height:0;margin:0 0 24px;font-size:14px;line-height:1.9}
+.project-tags{margin:0 0 28px}
+.project-bottom{padding-top:20px}
+.project-status{justify-content:flex-end}
+@media(max-width:650px){
+ .beyond-code{flex-direction:column;align-items:flex-start;gap:24px}
+ .interest-links{gap:24px;font-size:12px}
+ .projects-section .chapter-content{justify-content:flex-start}
+ .chapter-content .project-grid{margin-block:20px}
+ .chapter-content .project-content h3{font-size:25px;margin-block:20px 16px}
+ .chapter-content .project-content{padding:24px}
+}
+/* Next steps pairs personal plans with club learning goals. */
+.plans-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,6vw,100px);padding-block:48px}
+.plan-column{min-width:0}
+.plan-column h3{font:800 clamp(22px,2.4vw,36px)/1.5 var(--sans);color:var(--blue);margin:0 0 24px}
+.plan-description{margin:0;color:#4c5b6a;font-size:15px;line-height:1.9;overflow-wrap:anywhere}
+.plans-section .chapter-content>.plans-grid{flex:1;align-content:center;padding-block:0}
+@media(max-width:650px){.plans-grid{grid-template-columns:1fr;gap:32px;padding-block:32px}.plan-column h3{font-size:24px;margin-bottom:18px}.plans-section .section-index{white-space:normal;text-align:right}}
+
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <div class="page" id="top">
+
+    <main id="main">
+      <section id="intro" class="hero container" aria-labelledby="hero-title">
+        <div class="hero-layout">
+          <div class="hero-visual">
+            <div class="selected-code" aria-hidden="true">
+              <div class="strip s01 cobalt">&lt;&lt; const future = () =&gt; { &gt;&gt;</div>
+              <div class="strip s02 ice">// hello from Fedora_</div>
+              <div class="strip s03 punctuation"><span></span><span></span><span></span> &gt;&gt;&gt;</div>
+              <div class="strip s04 cobalt">if (idea) { return build(); }</div>
+              <div class="strip s05 ice">[ Linux // Minecraft // tools ]</div>
+              <div class="strip s06 emerald">{ } <span class="tiny-squares">▪ ▪</span></div>
+              <div class="strip s07 blue-dots">· · · · · · · · · →</div>
+              <div class="strip s08 ice">while (curious) { learn++; }</div>
+              <div class="strip s09 cobalt">&gt;&gt;&gt; developer.select('xiaozhangup');</div>
+              <div class="strip s10 ice">function helloWorld() { ... }</div>
+              <div class="strip s11 green-bars">▮ ▮ &nbsp; ▮▮ &nbsp; ▪ ▪</div>
+              <div class="strip s12 cobalt">for (let i = 0; i &lt; ∞; i++)</div>
+              <div class="strip s13 ice">&lt; stay curious /&gt;</div>
+              <div class="strip s14 emerald">// bring ideas to life</div>
+              <div class="strip s15 cobalt">[ shift + enter ]</div>
+              <div class="strip s16 subtle">_ _ _ _ _ _ _ _ _</div>
+            </div>
+            <div class="avatar-block">
+              <div class="avatar-frame">
+                <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+                <div class="avatar-inner" id="avatar-inner">
+                  <img id="avatar-preview" src="https://github.com/xiaozhangup.png?size=400" alt="Daniel Zhang 的 GitHub 头像" width="400" height="400" />
+                </div>
+              </div>
+              <div class="avatar-caption"><span>图 001</span><span>@xiaozhangup <b>↗</b></span></div>
+            </div>
+            <div class="visual-footnote"><span class="visual-asterisk">✳</span><span>// 这里收藏着<br />我在意的事物。</span></div>
+          </div>
+
+          <div class="hero-copy">
+            <p class="small-label">&gt;&gt;&gt; 你好，世界 <span class="text-green">// 我是谁？</span></p>
+            <h1 id="hero-title" class="hero-title"><span data-profile="heroFirst">Daniel</span><span data-profile="heroLast">Zhang<span class="title-dot">。</span></span></h1>
+            <div class="year-line"><span>@xiaozhangup / 2026</span><b>✳</b></div>
+            <p class="hero-statement" data-profile="tagline">Hello and welcome</p>
+            <div class="hero-action-row"><a class="primary-link" href="#projects">浏览我的作品 <span>↗</span></a><a class="plain-link" href="https://github.com/xiaozhangup/" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a></div>
+            <p class="mini-coordinate"><span data-profile="location">WUST · China · Fedora</span> <span class="active-circle"></span></p>
+          </div>
+        </div>
+        <div class="hero-baseline"><span>向下滚动继续探索</span><div class="baseline-dashes" aria-hidden="true"></div><span class="terminal-caret">// 故事还在继续 ↓</span></div>
+      </section>
+
+      <section class="about-section section-container" id="about" aria-labelledby="about-title">
+        <div class="container section-heading"><span class="section-no">01 / 关于我</span><span class="section-heading-line"></span><span class="section-index">屏幕背后的人是谁？</span></div>
+        <div class="container about-grid">
+          <div class="about-title-col"><p class="eyebrow text-green">/* 简单介绍一下 */</p><h2 id="about-title">不只是<br/><span>写代码</span><span class="small-plus">+</span></h2><p class="about-lede" data-profile="about">你好，我是 xiaozhangup，也叫 Daniel Zhang。我使用 Fedora，关注 Linux 桌面体验，也在 Minecraft 生态中开发和探索。这里收集我的开源项目，以及那些从日常需求出发的小工具。</p></div>
+          <div class="about-info-col">
+            <div class="about-ascii" aria-hidden="true"><span>&nbsp;&nbsp; * &nbsp;&nbsp;&nbsp;&nbsp; + &nbsp;&nbsp;&nbsp; *<br/>+ &nbsp; +++ &nbsp; +++ &nbsp; +<br/>&nbsp; *** &nbsp; * &nbsp; ***<br/>+ &nbsp;&nbsp; * &nbsp;&nbsp;&nbsp;&nbsp; * &nbsp; +</span><span>01010011<br/>10100101<br/>00110100</span></div>
+            <p class="info-prompt"><span class="text-green">&gt;</span> const me = {</p>
+            <dl class="profile-facts"><div><dt>学校 / 地区</dt><dd>WUST / China</dd></div><div><dt>关注方向</dt><dd>Linux / Minecraft / 自动化</dd></div><div><dt>日常系统</dt><dd><span class="status-dot"></span>Fedora</dd></div></dl>
+            <p class="info-prompt last-bracket">}; <span>// nice to meet you.</span></p>
+          </div>
+        </div>
+        <div class="container beyond-code" aria-label="代码之外">
+          <div><p class="eyebrow text-green">// 代码之外</p><h3>在其他地方找到我</h3><p class="beyond-note">音乐与游戏，是屏幕另一面的日常。</p></div>
+          <nav class="interest-links" aria-label="音乐与游戏主页"><a href="https://www.last.fm/user/xiaozhangup" target="_blank" rel="noopener noreferrer">Last.fm ↗</a><a href="https://open.spotify.com/user/31zejmn3iup6yuyfl3gifuclq2ha" target="_blank" rel="noopener noreferrer">Spotify ↗</a><a href="https://steamcommunity.com/profiles/76561199210251377/" target="_blank" rel="noopener noreferrer">Steam ↗</a></nav>
+        </div>
+      </section>
+
+      <section class="projects-section section-container" id="projects" aria-labelledby="projects-title">
+        <div class="container section-heading"><span class="section-no">02 / 作品</span><span class="section-heading-line"></span><span class="section-index">最近在做的事情</span></div>
+        <div class="container"><div class="section-title-row"><div><p class="eyebrow text-green">// 精选实验</p><h2 id="projects-title">精选<span>项目。</span></h2></div><p>一些作品与实验的收集。<br/>从想法到实现，一切都在持续迭代。</p></div></div>
+        <div class="container projects-shell">
+          <div class="projects-toolbar"><span><span class="square-blue">■</span>目录 / 项目</span><span>SELECTED / 03</span></div>
+          <div class="project-grid" id="project-grid">
+<article class="project-card" data-project="01"><div class="project-content"><h3><span class="project-name">Octopus</span> <span>↗</span></h3><p>基于 Paper 的 Minecraft 服务端分支，包含 PWT 和 HAPPYLAND 专属功能。</p><div class="project-tags">Java / Paper / Minecraft</div><div class="project-bottom"><a class="source-link" href="https://github.com/xiaozhangup/Octopus" target="_blank" rel="noopener noreferrer" aria-label="查看 Octopus 源码">查看源码 ↗</a><button type="button" class="project-open" data-open-project="01" aria-label="查看 Octopus 详情">查看详情 +</button></div></div></article>
+<article class="project-card" data-project="02"><div class="project-content"><h3><span class="project-name">LyricifyIsland</span> <span>↗</span></h3><p>在 Linux 桌面上还原灵动词岛体验，让歌词成为桌面的一部分。</p><div class="project-tags">C# / .NET / Skia / MPRIS</div><div class="project-bottom"><a class="source-link" href="https://github.com/xiaozhangup/LyricifyIsland" target="_blank" rel="noopener noreferrer" aria-label="查看 LyricifyIsland 源码">查看源码 ↗</a><button type="button" class="project-open" data-open-project="02" aria-label="查看 LyricifyIsland 详情">查看详情 +</button></div></div></article>
+<article class="project-card" data-project="03"><div class="project-content"><h3><span class="project-name">xiaozhangup-bot</span> <span>↗</span></h3><p>整理消息通知、同步 Todoist 任务，用自动化照顾日常琐事。</p><div class="project-tags">通知整理 / Todoist / 定时提醒</div><div class="project-bottom"><a class="source-link" href="https://github.com/xiaozhangup/xiaozhangup-bot" target="_blank" rel="noopener noreferrer" aria-label="查看 xiaozhangup-bot 源码">查看源码 ↗</a><button type="button" class="project-open" data-open-project="03" aria-label="查看 xiaozhangup-bot 详情">查看详情 +</button></div></div></article>
+</div>
+          <div class="project-status"><a href="https://github.com/xiaozhangup?tab=repositories" target="_blank" rel="noopener noreferrer">更多项目，前往 GitHub ↗</a></div>
+        </div>
+      </section>
+
+      <section class="toolbox-section section-container" id="toolbox" aria-labelledby="toolbox-title">
+        <div class="container section-heading"><span class="section-no">03 / 使用与探索</span><span class="section-heading-line"></span><span class="section-index">我的工具箱里有什么？</span></div>
+        <div class="container toolbox-grid"><div><p class="eyebrow text-green">[ 持续学习 ]</p><h2 id="toolbox-title">我常用的<br/><em>工具。</em></h2><p class="toolbox-note">从桌面应用到服务端，用熟悉的工具解决问题，也不断探索新的可能。</p></div><div class="stack-panel"><div class="stack-line"><span>01 / 桌面开发</span><div><span class="chip">Rust</span><span class="chip">GTK4</span><span class="chip">libadwaita</span></div></div><div class="stack-line"><span>02 / 编程语言</span><div><span class="chip">C</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">Kotlin</span><span class="chip">Bash</span></div></div><div class="stack-line"><span>03 / 框架与构建</span><div><span class="chip">Ktor</span><span class="chip">PaperMC</span><span class="chip">Gradle</span></div></div><div class="stack-line"><span>04 / 系统与容器</span><div><span class="chip">Linux</span><span class="chip">Fedora</span><span class="chip">Red Hat</span><span class="chip">Docker</span><span class="chip">Podman</span></div></div><div class="stack-line"><span>05 / 开发工具</span><div><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">GitLab</span><span class="chip">IntelliJ IDEA</span><span class="chip">VS Code</span><span class="chip">Markdown</span></div></div><div class="stack-prompt">&gt; always learning<span class="blink">_</span></div></div></div>
+      </section>
+
+      <section class="plans-section section-container" id="plans" aria-labelledby="plans-title">
+        <div class="container section-heading"><span class="section-no">04 / 下一步</span><span class="section-heading-line"></span><span class="section-index">想去的方向，想学的东西</span></div>
+        <div class="container"><div class="section-title-row"><div><p class="eyebrow text-green">// 保持好奇，继续实践</p><h2 id="plans-title">接下来，<span>继续创造。</span></h2></div></div></div>
+        <div class="container plans-grid">
+          <article class="plan-column" aria-labelledby="career-title">
+            <p class="eyebrow text-green">[ 面向未来 ]</p>
+            <h3 id="career-title">未来规划</h3>
+            <p class="plan-description">目前以就业为方向，希望从事游戏开发。已有的 Minecraft 开发经历让我想进一步探索游戏制作，接下来计划巩固编程基础、学习游戏引擎，并通过小作品积累经验。</p>
+          </article>
+          <article class="plan-column" aria-labelledby="club-title">
+            <p class="eyebrow text-green">[ 一起学习 ]</p>
+            <h3 id="club-title">加入俱乐部想学什么</h3>
+            <p class="plan-description">希望接触更多技术，在交流与项目协作中提升开发能力，把学到的知识用到实际作品中。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section section-container" id="contact" aria-labelledby="contact-title">
+        <div class="container section-heading"><span class="section-no">05 / 联系我</span><span class="section-heading-line"></span><span class="section-index">在代码之外</span></div>
+        <div class="container contact-inner"><div class="contact-top"><span><span class="status-dot"></span>欢迎交流</span><span>// 欢迎来聊聊</span></div><h2 id="contact-title">在代码之外，<br/><span>也欢迎交流。</span><span class="contact-star">✳</span></h2><p>如果你对这些项目感兴趣，<br/>欢迎到 GitHub 看看。</p><div class="contact-links"><a class="email-link" href="https://github.com/xiaozhangup/" target="_blank" rel="noopener noreferrer">访问 @xiaozhangup ↗</a></div><div class="contact-end"><span>// 让想法发生。</span><a href="https://github.com/xiaozhangup/" target="_blank" rel="noopener noreferrer">GitHub / xiaozhangup ↗</a></div></div>
+    <footer class="site-footer container"><span><b>&lt;/&gt;</b> xiaozhangup / © 2026</span><a href="#top">返回顶部 ↑</a></footer>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="modal" id="project-dialog" aria-labelledby="project-dialog-title"><div class="modal-box"><div class="modal-heading"><span class="text-green">// 项目详情</span><button type="button" data-close="project-dialog" aria-label="关闭项目详情">×</button></div><div class="modal-number" id="project-dialog-number">项目_001</div><h2 id="project-dialog-title">项目详情</h2><p id="project-dialog-description">选择一个项目，了解更多。</p><div id="project-dialog-tags" class="modal-tags"></div><a id="project-dialog-source" class="primary-link" href="https://github.com/xiaozhangup/" target="_blank" rel="noopener noreferrer">在 GitHub 查看源码 ↗</a><button type="button" class="modal-secondary" data-close="project-dialog">关闭 [ ESC ]</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* Personal profile and selected open-source projects. */
+const DEFAULT_PROFILE = Object.freeze({
+  "name": "Daniel Zhang",
+  "handle": "xiaozhangup",
+  "location": "WUST · China · Fedora",
+  "tagline": "Hello and welcome",
+  "about": "你好，我是 xiaozhangup，也叫 Daniel Zhang。我使用 Fedora，关注 Linux 桌面体验，也在 Minecraft 生态中开发和探索。这里收集我的开源项目，以及那些从日常需求出发的小工具。"
+});
+const PROJECTS = {
+  "01": {
+    "title": "Octopus",
+    "description": "基于 Paper 的 Minecraft 服务端分支，包含并行世界 Tick（PWT）、HAPPYLAND 专属功能与服务端 API 扩展。围绕实际服务器需求，探索性能与功能的改进。",
+    "summary": "基于 Paper 的 Minecraft 服务端分支，包含 PWT 和 HAPPYLAND 专属功能。",
+    "tags": [
+      "Java",
+      "Paper",
+      "Minecraft"
+    ],
+    "category": "服务端",
+    "url": "https://github.com/xiaozhangup/Octopus"
+  },
+  "02": {
+    "title": "LyricifyIsland",
+    "description": "Linux 桌面顶置歌词岛，支持 Spotify Web API 与本机 MPRIS 播放信息，提供逐字歌词、翻译和独立歌词窗口。使用 Skia 自绘歌词与动画；项目 README 标注由 AI 编写。",
+    "summary": "在 Linux 桌面上还原灵动词岛体验，让歌词成为桌面的一部分。",
+    "tags": [
+      "C#",
+      ".NET",
+      "Skia",
+      "MPRIS"
+    ],
+    "category": "桌面",
+    "url": "https://github.com/xiaozhangup/LyricifyIsland"
+  },
+  "03": {
+    "title": "xiaozhangup-bot",
+    "description": "用于处理日常消息通知的自用机器人。按关键词和群号抓取、总结通知并发送到 Todoist，支持任务管理命令、定时天气早报和月度私信提醒。",
+    "summary": "整理消息通知、同步 Todoist 任务，用自动化照顾日常琐事。",
+    "tags": [
+      "通知整理",
+      "Todoist",
+      "定时提醒"
+    ],
+    "category": "自动化",
+    "url": "https://github.com/xiaozhangup/xiaozhangup-bot"
+  }
+};
+const profile = DEFAULT_PROFILE;
+let toastTimeout;
+
+function showToast(message) {
+  const toast = document.querySelector('#toast');
+  toast.textContent = message;
+  toast.classList.add('visible');
+  window.clearTimeout(toastTimeout);
+  toastTimeout = window.setTimeout(() => toast.classList.remove('visible'), 2600);
+}
+function setText(element, value) {
+  if (!element) return;
+  if (element.hasAttribute('data-profile') && element.getAttribute('data-profile') === 'tagline') {
+    element.replaceChildren(...String(value).split('\n').flatMap((line, i) => i ? [document.createElement('br'), document.createTextNode(line)] : [document.createTextNode(line)]));
+  } else { element.textContent = value; }
+}
+function paintProfile() {
+  const words = profile.name.trim().split(/\s+/);
+  const singleWordName = words.length < 2;
+  const first = singleWordName ? '你好，' : words[0] || '你的';
+  const last = singleWordName ? words[0] || '名字' : words.slice(1).join(' ');
+  document.querySelector('.hero-title').classList.toggle('long-name', Math.max(first.length, last.length) > 7);
+  document.querySelectorAll('[data-profile]').forEach(el => {
+    const key = el.dataset.profile;
+    if (key === 'heroFirst') setText(el, first);
+    else if (key === 'heroLast') {
+      el.textContent = last;
+      const dot = document.createElement('span'); dot.className = 'title-dot'; dot.textContent = '。'; el.append(dot);
+    } else { setText(el, profile[key] ?? ''); }
+  });
+  document.title = profile.name + ' / 个人作品集';
+  const mark = document.querySelector('.avatar-glyph');
+  const abbr = words.map(s => s.charAt(0)).slice(0, 2).join('').toUpperCase();
+  if (mark) mark.textContent = '<' + (abbr || 'Y') + '/>';
+  const footer = document.querySelector('.site-footer span:first-child');
+  footer.innerHTML = '<b>&lt;/&gt;</b> ';
+  footer.append(document.createTextNode(profile.handle + ' / © 2026'));
+}
+paintProfile();
+
+// Accessible project details and source links.
+const projectDialog = document.querySelector('#project-dialog');
+document.querySelectorAll('[data-open-project]').forEach(button => button.addEventListener('click', () => {
+  const id = button.dataset.openProject;
+  const p = PROJECTS[id];
+  document.querySelector('#project-dialog-number').textContent = '项目_' + id.padStart(3,'0');
+  document.querySelector('#project-dialog-title').textContent = p.title;
+  document.querySelector('#project-dialog-description').textContent = p.description;
+  document.querySelector('#project-dialog-tags').replaceChildren(...p.tags.map(label => {
+    const span = document.createElement('span'); span.textContent = label; return span;
+  }));
+  document.querySelector('#project-dialog-source').href = p.url;
+  projectDialog.showModal();
+}));
+document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => {
+  document.getElementById(button.dataset.close).close();
+}));
+document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', e => {
+  if (e.target === dialog) dialog.close();
+}));
+
+// Full-height chapters share one navigation path for wheels, keys, links and hashes.
+const chapters = [...document.querySelectorAll('main > section')];
+const root = document.documentElement;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+function syncMotionVisibility() {
+  root.classList.toggle('motion-paused', document.hidden);
+}
+document.addEventListener('visibilitychange', syncMotionVisibility);
+syncMotionVisibility();
+let activeChapter = 0;
+let switching = false;
+let wheelGestureActive = false;
+let wheelIdleTimer;
+let settleTimer;
+let layoutFrame;
+let runningAnimations = [];
+
+for (const chapter of chapters) {
+  const stage = document.createElement('div');
+  const content = document.createElement('div');
+  stage.className = 'chapter-stage';
+  content.className = 'chapter-content';
+  content.append(...chapter.childNodes);
+  stage.append(content);
+  chapter.append(stage);
+}
+root.classList.add('chapter-ready');
+
+function chapterTop(chapter) {
+  return chapter.getBoundingClientRect().top + window.scrollY;
+}
+function nearestChapter() {
+  return chapters.reduce((best, chapter, index) => Math.abs(chapterTop(chapter) - window.scrollY) < Math.abs(chapterTop(chapters[best]) - window.scrollY) ? index : best, 0);
+}
+function hashChapter() {
+  const id = location.hash.slice(1);
+  const index = chapters.findIndex(chapter => chapter.id === id);
+  return index < 0 ? 0 : index;
+}
+function updateChapter(index) {
+  activeChapter = index;
+  chapters.forEach((chapter, i) => {
+    chapter.classList.toggle('is-active', i === index);
+    chapter.inert = i !== index;
+  });
+  const hash = index ? '#' + chapters[index].id : '#top';
+  if (location.hash !== hash) history.replaceState(null, '', hash);
+}
+function fitChapters() {
+  for (const chapter of chapters) {
+    const style = getComputedStyle(chapter);
+    const available = chapter.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+    // Distribute the available space in CSS; keep text at its natural readable size.
+    chapter.style.setProperty('--chapter-height', `${Math.floor(available)}px`);
+  }
+}
+// Reveal existing text without changing its size, line breaks or accessible content.
+const typingSelector = 'h1, h2, h3, .hero-statement, .about-lede, .toolbox-note, .contact-inner > p, .terminal-lines p, .info-prompt, .stack-prompt, .eyebrow, .section-no, .section-index, .project-content > p, .beyond-note, .plan-description';
+const graphemes = new Intl.Segmenter('zh-CN', { granularity: 'grapheme' });
+let typingChapter;
+let typingTimer;
+function prepareTypewriter(chapter) {
+  chapter.querySelectorAll('.selected-code .strip').forEach((element, index) => {
+    element.style.setProperty('--code-delay', `${index * 25}ms`);
+  });
+  const targets = [...chapter.querySelectorAll(typingSelector)];
+  targets.filter(element => !targets.some(other => other !== element && other.contains(element))).forEach((element, group) => {
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    const glyphs = [];
+    for (const node of nodes) {
+      if (!node.textContent.trim()) continue;
+      const fragment = document.createDocumentFragment();
+      // Keep Latin words together; Chinese characters retain their natural wrapping.
+      for (const token of node.textContent.split(/([A-Za-z0-9_]+)/)) {
+        const word = /^[A-Za-z0-9_]+$/.test(token) ? document.createElement('span') : fragment;
+        if (word !== fragment) word.className = 'typing-word';
+        for (const { segment } of graphemes.segment(token)) {
+          const glyph = document.createElement('span');
+          glyph.className = 'typing-glyph';
+          glyph.textContent = segment;
+          glyphs.push(glyph);
+          word.append(glyph);
+        }
+        if (word !== fragment) fragment.append(word);
+      }
+      node.replaceWith(fragment);
+    }
+    // Reveal each glyph as the cursor reaches it; sweep the long tail in 240 ms.
+    const tailStart = Math.ceil(1200 / 28);
+    const tailStep = 240 / Math.max(1, glyphs.length - tailStart);
+    glyphs.forEach((glyph, index) => {
+      const cursorDelay = index < tailStart ? index * 28 : 1200 + (index - tailStart) * tailStep;
+      const cursorDuration = index < tailStart ? Math.min(28, 1200 - index * 28) : tailStep;
+      glyph.style.setProperty('--typing-delay', `${Math.min(group * 45, 450) + cursorDelay}ms`);
+      glyph.style.setProperty('--cursor-delay', `${Math.min(group * 45, 450) + cursorDelay}ms`);
+      glyph.style.setProperty('--cursor-duration', `${cursorDuration}ms`);
+    });
+  });
+}
+function finishTyping() {
+  clearTimeout(typingTimer);
+  typingChapter?.classList.remove('is-typing');
+  typingChapter = null;
+}
+function startTyping(chapter, delay = 0) {
+  finishTyping();
+  if (reducedMotion.matches) return;
+  typingChapter = chapter;
+  chapter.style.setProperty('--typing-start', `${delay}ms`);
+  chapter.classList.add('is-typing');
+  typingTimer = setTimeout(finishTyping, delay + 1900);
+}
+chapters.forEach(prepareTypewriter);
+
+function motionElements(chapter) {
+  return [...chapter.querySelectorAll('.section-heading, .strip, .avatar-block, .visual-footnote, .hero-copy > *, .hero-baseline, .about-title-col > *, .about-ascii, .info-prompt, .profile-facts > div, .section-title-row, .projects-toolbar, .project-card, .project-status, .toolbox-grid > div:first-child > *, .stack-line, .stack-prompt, .beyond-code > div, .interest-links, .workflow, .plan-column > .eyebrow, .plan-column > h3, .plan-description, .contact-top, .contact-inner > h2, .contact-inner > p, .contact-links, .contact-end, .site-footer')].filter(el => el.getClientRects().length && !el.hidden);
+}
+function animateChapter(chapter, entering, direction) {
+  if (reducedMotion.matches) return Promise.resolve();
+  const elements = motionElements(chapter).filter(element => !entering || !element.matches('.selected-code .strip'));
+  return Promise.all(elements.map((element, i) => {
+    const base = getComputedStyle(element).transform;
+    const rest = base === 'none' ? '' : base;
+    const offset = `${rest} translateY(${(entering ? 28 : -16) * direction}px)`;
+    const frames = entering
+      ? [{ opacity: 0, transform: offset }, { opacity: 1, transform: base }]
+      : [{ opacity: 1, transform: base }, { opacity: .65, transform: offset }];
+    const animation = element.animate(frames, {
+      duration: entering ? 560 : 620,
+      delay: entering ? 60 + Math.min(i * 12, 120) : 0,
+      easing: entering ? 'cubic-bezier(.16,1,.3,1)' : 'cubic-bezier(.4,0,1,1)',
+      fill: 'both'
+    });
+    runningAnimations.push(animation);
+    return animation.finished.catch(() => {});
+  }));
+}
+function scrollToChapter(index, animated, onArrival = () => {}) {
+  const from = window.scrollY;
+  const started = performance.now();
+  let arrivalStarted = false;
+  return new Promise(resolve => {
+    function tick(now) {
+      const progress = animated && !reducedMotion.matches ? Math.min(1, (now - started) / 620) : 1;
+      const eased = progress < .5 ? 4 * progress ** 3 : 1 - (-2 * progress + 2) ** 3 / 2;
+      window.scrollTo({ top: from + (chapterTop(chapters[index]) - from) * eased, behavior: 'instant' });
+      // Use actual eased travel distance, not elapsed animation time.
+      if (!arrivalStarted && eased >= .8) {
+        arrivalStarted = true;
+        onArrival();
+      }
+      if (progress < 1) requestAnimationFrame(tick);
+      else resolve();
+    }
+    requestAnimationFrame(tick);
+  });
+}
+async function goToChapter(index, animate = true) {
+  index = Math.max(0, Math.min(chapters.length - 1, index));
+  if (switching) return;
+  const previous = activeChapter;
+  if (index === previous && Math.abs(window.scrollY - chapterTop(chapters[index])) < 1) return;
+  switching = true;
+  root.classList.add('is-switching');
+  const direction = index >= previous ? 1 : -1;
+  const oldFocus = chapters[previous].contains(document.activeElement);
+  const target = chapters[index];
+  target.scrollTop = 0;
+  target.inert = false;
+  const useMotion = animate && !reducedMotion.matches;
+  finishTyping();
+  const entering = useMotion && index !== previous;
+  let entranceAnimation = Promise.resolve();
+  // Keep the target in its unrevealed state until 80% of the scroll distance.
+  // Visibility preserves layout, so animation targets can still be measured.
+  if (entering) target.classList.add('is-awaiting-entry');
+  const startEntrance = () => {
+    if (!entering) return;
+    target.classList.add('is-entering');
+    startTyping(target);
+    entranceAnimation = animateChapter(target, true, direction);
+    target.classList.remove('is-awaiting-entry');
+  };
+  try {
+    await Promise.all([
+      entering ? animateChapter(chapters[previous], false, direction) : Promise.resolve(),
+      scrollToChapter(index, useMotion, startEntrance)
+    ]);
+    await entranceAnimation;
+  } finally {
+    runningAnimations.forEach(animation => animation.cancel());
+    runningAnimations = [];
+    updateChapter(index);
+    target.classList.remove('is-entering', 'is-awaiting-entry');
+    window.scrollTo({ top: chapterTop(target), behavior: 'instant' });
+    root.classList.remove('is-switching');
+    switching = false;
+    if (oldFocus) {
+      const title = target.querySelector('h1, h2');
+      title.setAttribute('tabindex', '-1');
+      title.focus({ preventScroll: true });
+    }
+  }
+}
+function allowsChapterScroll(target) {
+  return !document.querySelector('dialog[open]') && !(target instanceof Element && target.closest('input, textarea, select, [contenteditable="true"]'));
+}
+function canScrollInside(direction) {
+  const chapter = chapters[activeChapter];
+  return direction > 0 ? chapter.scrollTop + chapter.clientHeight < chapter.scrollHeight - 2 : chapter.scrollTop > 2;
+}
+window.addEventListener('wheel', event => {
+  if (event.ctrlKey || !allowsChapterScroll(event.target) || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+  const direction = Math.sign(event.deltaY);
+  if (!switching && canScrollInside(direction)) return;
+  event.preventDefault();
+  clearTimeout(wheelIdleTimer);
+  wheelIdleTimer = setTimeout(() => { wheelGestureActive = false; }, 240);
+  if (wheelGestureActive || switching) return;
+  wheelGestureActive = true;
+  goToChapter(activeChapter + direction);
+}, { passive: false });
+window.addEventListener('keydown', event => {
+  if (!allowsChapterScroll(event.target) || event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.target instanceof Element && event.target.closest('button, a, [role="button"]') && [' ', 'Enter'].includes(event.key)) return;
+  const direction = ['ArrowDown', 'PageDown'].includes(event.key) || (event.key === ' ' && !event.shiftKey) ? 1 : ['ArrowUp', 'PageUp'].includes(event.key) || (event.key === ' ' && event.shiftKey) ? -1 : 0;
+  if (direction) {
+    event.preventDefault();
+    if (!switching && canScrollInside(direction)) chapters[activeChapter].scrollBy({ top: direction * chapters[activeChapter].clientHeight * .7, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    else goToChapter(activeChapter + direction);
+  } else if (['Home', 'End'].includes(event.key)) {
+    event.preventDefault();
+    goToChapter(event.key === 'Home' ? 0 : chapters.length - 1);
+  }
+});
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  const id = link.getAttribute('href').slice(1);
+  const index = ['top', 'main', 'intro'].includes(id) ? 0 : chapters.findIndex(chapter => chapter.id === id);
+  if (index < 0) return;
+  event.preventDefault();
+  goToChapter(index);
+});
+let touchStart;
+window.addEventListener('touchstart', event => {
+  touchStart = event.touches.length === 1 && allowsChapterScroll(event.target) ? { x: event.touches[0].clientX, y: event.touches[0].clientY, used: false } : null;
+}, { passive: true });
+window.addEventListener('touchmove', event => {
+  if (!touchStart || event.touches.length !== 1 || !allowsChapterScroll(event.target)) return;
+  const dx = touchStart.x - event.touches[0].clientX;
+  const dy = touchStart.y - event.touches[0].clientY;
+  if (Math.abs(dy) <= Math.abs(dx)) return;
+  const direction = Math.sign(dy);
+  if (!switching && canScrollInside(direction)) { touchStart.used = true; return; }
+  event.preventDefault();
+  if (touchStart.used || switching || Math.abs(dy) < 45) return;
+  touchStart.used = true;
+  goToChapter(activeChapter + direction);
+}, { passive: false });
+window.addEventListener('touchend', () => { touchStart = null; });
+window.addEventListener('hashchange', () => goToChapter(hashChapter()));
+window.addEventListener('scroll', () => {
+  clearTimeout(settleTimer);
+  if (switching) return;
+  // Covers dragging the scrollbar and browser-driven restoration.
+  settleTimer = setTimeout(() => goToChapter(nearestChapter()), 160);
+}, { passive: true });
+function refreshLayout() {
+  cancelAnimationFrame(layoutFrame);
+  layoutFrame = requestAnimationFrame(() => {
+    fitChapters();
+    if (!switching) window.scrollTo({ top: chapterTop(chapters[activeChapter]), behavior: 'instant' });
+  });
+}
+window.addEventListener('resize', refreshLayout);
+const chapterResizeObserver = new ResizeObserver(refreshLayout);
+chapters.forEach(chapter => chapterResizeObserver.observe(chapter.querySelector('.chapter-content')));
+fitChapters();
+updateChapter(hashChapter());
+window.scrollTo({ top: chapterTop(chapters[activeChapter]), behavior: 'instant' });
+startTyping(chapters[activeChapter], 80);
+document.fonts.ready.then(refreshLayout);
+window.addEventListener('pageshow', refreshLayout);
+reducedMotion.addEventListener('change', () => {
+  runningAnimations.forEach(animation => animation.finish());
+  finishTyping();
+});
+
+// Additive translation keeps chapter entrances and decorative rotation independent.
+const compactFloat = window.matchMedia('(max-width: 650px)');
+const floatSpecs = [
+  ['.s04', 3, 6200], ['.s09', 3, 7400], ['.s13', 3, 8000],
+  ['.avatar-block', 5, 7000],
+  ['.about-ascii > span:first-child', 4, 6000],
+  ['.about-ascii > span:last-child', 4, 8000],
+  ['.terminal-window', 4, 6400], ['.orbit-shape', 4, 7800],
+  ['.big-angle', 4, 7000], ['.contact-star', 3, 7000]
+];
+let ambientFloats = [];
+function syncAmbientFloats() {
+  for (const { element, chapter, animation } of ambientFloats) {
+    const interacting = element.matches('.avatar-block') &&
+      (element.matches(':hover') || element.matches(':focus-within'));
+    const playing = !document.hidden && !root.classList.contains('is-switching') &&
+      chapter.classList.contains('is-active') && !interacting;
+    if (playing && animation.playState !== 'running') animation.play();
+    else if (!playing && animation.playState !== 'paused') animation.pause();
+  }
+}
+function prepareAmbientFloats() {
+  ambientFloats.forEach(({ animation }) => animation.cancel());
+  ambientFloats = [];
+  if (reducedMotion.matches) return;
+  floatSpecs.forEach(([selector, amplitude, duration], index) => {
+    document.querySelectorAll(selector).forEach(element => {
+      const distance = amplitude * (compactFloat.matches ? .5 : 1);
+      const sign = index % 2 ? -1 : 1;
+      const frames = Array.from({ length: 65 }, (_, step) => ({
+        translate: `0 ${-Math.sin(step / 64 * Math.PI * 2) * distance * sign}px`,
+        offset: step / 64
+      }));
+      const animation = element.animate(frames, {
+        duration, delay: 1000 + (index % 3) * 180, iterations: Infinity,
+        easing: 'linear', composite: 'add'
+      });
+      animation.pause();
+      ambientFloats.push({ element, chapter: element.closest('main > section'), animation });
+    });
+  });
+  syncAmbientFloats();
+}
+const ambientObserver = new MutationObserver(syncAmbientFloats);
+[root, ...chapters].forEach(element => ambientObserver.observe(element, {
+  attributes: true, attributeFilter: ['class']
+}));
+const floatingAvatar = document.querySelector('.avatar-block');
+['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach(type => {
+  floatingAvatar.addEventListener(type, () => queueMicrotask(syncAmbientFloats));
+});
+document.addEventListener('visibilitychange', syncAmbientFloats);
+reducedMotion.addEventListener('change', prepareAmbientFloats);
+compactFloat.addEventListener('change', prepareAmbientFloats);
+prepareAmbientFloats();
+
+</script>
+</body>
+</html>
